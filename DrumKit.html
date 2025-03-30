@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="css/DrumKit.css">
+    <link rel="stylesheet" href="css/DrumKitresponsive.css">
+    <title>Drum Kit</title>
+    <style>
+    
+    
+    
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <h2>DrumKit</h2>
+           <div class="indicator" id="indicator1"></div>
+            <div class="indicator" id="indicator2"></div>
+        <div class="drum-kit">
+            <div class="key" data-key="81">
+                <span>Q</span>
+                <small>Base Kick</small>
+            </div>
+            <div class="key1" data-key="87">
+                <span>W</span>
+                <small>Snare</small>
+            </div>
+            <div class="key2" data-key="69">
+                <span>E</span>
+                <small>Tom</small>
+            </div>
+            <div class="key3" data-key="82">
+                <span>R</span>
+                <small>Kick</small>
+            </div>
+        </div>
+
+        <div class="drum-kit">
+            <div class="key4" data-key="65">
+                <span>A</span>
+                <small>Kick Snare</small>
+            </div>
+            <div class="key5" data-key="83">
+                <span>S</span>
+                <small>Kick Snare</small>
+            </div>
+            <div class="key6" data-key="68">
+                <span>D</span>
+                <small>Slap Snare</small>
+            </div>
+            <div class="key7" data-key="70">
+                <span>F</span>
+                <small>Snare</small>
+            </div>
+        </div>
+
+        <div class="drum-kit">
+            <div class="key8" data-key="85">
+                <span>U</span>
+                <small>Shake bell</small>
+            </div>
+            <div class="key9" data-key="73">
+                <span>I</span>
+                <small>Triple Hi-hat</small>
+            </div>
+            <div class="key10" data-key="79">
+                <span>O</span>
+                <small>Hi-hat</small>
+            </div>
+            <div class="key11" data-key="80">
+                <span>P</span>
+                <small>Rimshot</small>
+            </div>
+        </div>
+
+        <div class="drum-kit">
+            <div class="key12" data-key="76">
+                <span>L</span>
+                <small>PianoMelody</small>
+            </div>
+            <div class="key13" data-key="72">
+                <span>H</span>
+                <small>GuitarMelody</small>
+            </div>
+            <div class="key14" data-key="74">
+                <span>J</span>
+                <small>VoiceOver</small>
+            </div>
+            <div class="key15" data-key="75">
+                <span>K</span>
+                <small>Phonk Music</small>
+            </div>
+        </div>
+  <div class="drum-kit">
+         <button id="startButton" class="power-button"></button>
+        </div>
+
+    </div>
+        <audio data-key="81" src="MemoryAudio/kick.wav"></audio>
+        <audio data-key="87" src="MemoryAudio/kick-drum.wav"></audio>
+        <audio data-key="69" src="MemoryAudio/boomy-tom.wav"></audio>
+        <audio data-key="82" src="MemoryAudio/dry-house-kick.wav"></audio>
+        <audio data-key="65" src="MemoryAudio/snare.wav"></audio>
+        <audio data-key="83" src="MemoryAudio/memphis-snare.wav"></audio>
+        <audio data-key="68" src="MemoryAudio/layered-snare.wav"></audio>
+        <audio data-key="70" src="MemoryAudio/falling-drum-snare.wav"></audio>
+        <audio data-key="85" src="MemoryAudio/percs-bundle.wav"></audio>
+        <audio data-key="73" src="MemoryAudio/hi-hat-roll.wav"></audio>
+        <audio data-key="79" src="MemoryAudio/hi-hat closed.wav"></audio>
+        <audio data-key="80" src="MemoryAudio/hihat2.wav"></audio>
+        <audio data-key="76" src="MemoryAudio/piano.wav"></audio>
+        <audio data-key="72" src="MemoryAudio/guitar.wav"></audio>
+        <audio data-key="74" src="MemoryAudio/shake-that-thang.wav"></audio>
+        <audio data-key="75" src="MemoryAudio/flowing-shake.wav"></audio>
+    </div>
+     
+ <script>
+    let isStarted = false; // Flag to check if the drum kit is active
+
+    function playSound(e) {
+        if (!isStarted) return; // Prevent sound if Start is not clicked
+
+        const keyCode = e.type === "keydown" ? e.keyCode : e.target.dataset.key;
+        const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${keyCode}"], .key1[data-key="${keyCode}"], .key2[data-key="${keyCode}"], .key3[data-key="${keyCode}"], .key4[data-key="${keyCode}"], .key5[data-key="${keyCode}"], .key6[data-key="${keyCode}"], .key7[data-key="${keyCode}"], .key8[data-key="${keyCode}"], .key9[data-key="${keyCode}"], .key10[data-key="${keyCode}"], .key11[data-key="${keyCode}"], .key12[data-key="${keyCode}"], .key13[data-key="${keyCode}"], .key14[data-key="${keyCode}"], .key15[data-key="${keyCode}"]`);
+
+        if (!audio) return;
+
+        audio.currentTime = 0;
+        audio.play();
+
+        if (key) {
+            key.classList.add("playing");
+        }
+    }
+
+    function removeTransition(e) {
+        if (e.propertyName !== "transform") return;
+        e.target.classList.remove("playing");
+    }
+
+    // Start button functionality
+    document.getElementById("startButton").addEventListener("click", function () {
+        isStarted = !isStarted; // Toggle the drum kit state
+
+        // Update indicators based on the state
+        document.getElementById("indicator1").classList.toggle("on", isStarted);
+        document.getElementById("indicator2").classList.toggle("on", isStarted);
+
+        // Add animation to all keys when starting
+        if (isStarted) {
+            document.querySelectorAll(".key, .key1, .key2, .key3, .key4, .key5, .key6, .key7, .key8, .key9, .key10, .key11, .key12, .key13, .key14, .key15").forEach((key, index) => {
+                setTimeout(() => {
+                    key.classList.add("playing");
+                    setTimeout(() => key.classList.remove("playing"), 300);
+                }, index * 100); // Staggered effect
+            });
+        }
+    });
+
+    // Keyboard and mouse click event listeners
+    document.addEventListener("keydown", playSound);
+    document.querySelectorAll(".key, .key1, .key2, .key3, .key4, .key5, .key6, .key7, .key8, .key9, .key10, .key11, .key12, .key13, .key14, .key15").forEach(key => {
+        key.addEventListener("click", playSound);
+        key.addEventListener("transitionend", removeTransition);
+    });
+</script>
+</head>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="css/XOX.css">
+    <link rel="stylesheet" href="css/XOXresponsive.css">
+    
+    <title>Tic-Tac-Toe Slot</title>
+    <style>
+    </style>
+</head>
+<body>
+
+    <div class="slot-machine">
+        <div class="jackpot">TIC TAC TOE</div>
+        
+        <div class="screen">
+            <div class="board" id="board"></div>
+            <div class="timer-container">
+                <div class="timer" id="timer">TIMER: 30s</div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="button orange" onclick="selectMode('pvp')">PvP</button>
+<button class="button green" onclick="selectMode('bot')">Bot PvP</button>
+<button class="button purple" onclick="toggleTimer()">Timer On/Off</button>
+<button class="button yellow" onclick="startResetGame()">Start /Reset</button>
+        </div>
+
+        <button class="selection">SELECT A MODE</button>
+    </div>
+
+<script>
+    let board, currentPlayer, gameActive = false, timeLeft = 5, timer, timerEnabled = false, mode = "";
+
+    // Sound effects for click, win, lose, draw, O win, and button click
+    let clickSound = new Audio('MemoryAudio/Slide1.mp3'); // Ensure the correct path to the file
+    let winSound = new Audio('MemoryAudio/win.mp3'); // Ensure the correct path to the file
+    let loseSound = new Audio('MemoryAudio/lose.mp3'); // Ensure the correct path to the file
+    let drawSound = new Audio('MemoryAudio/draw.mp3'); // Ensure the correct path to the draw sound file
+    let oWinSound = new Audio('MemoryAudio/lose.mp3'); // Ensure the correct path to the O win sound file
+    let buttonClickSound = new Audio('MemoryAudio/Click.mp3'); // Ensure the correct path to the button click sound file
+
+    // Function to play button click sound
+    function playButtonClickSound() {
+        buttonClickSound.play();
+    }
+
+    function selectMode(selectedMode) {
+        playButtonClickSound(); // Play button click sound
+        mode = selectedMode;
+        document.querySelector(".selection").innerText = mode === "pvp" ? "Mode: PvP" : "Mode: Play vs Bot";
+        gameActive = false;
+    }
+
+    function toggleTimer() {
+        playButtonClickSound(); // Play button click sound
+        timerEnabled = !timerEnabled;
+        document.querySelector(".selection").innerText = `Timer: ${timerEnabled ? "ON" : "OFF"}`;
+    }
+
+    function startResetGame() {
+        playButtonClickSound(); // Play button click sound
+        
+        // Stop sounds when restarting
+        clickSound.pause();
+        winSound.pause();
+        loseSound.pause();
+        drawSound.pause(); // Stop draw sound if game is reset
+        oWinSound.pause(); // Stop O win sound if game is reset
+        buttonClickSound.pause(); // Stop button click sound if game is reset
+
+        // Reset the sounds to the beginning
+        clickSound.currentTime = 0;
+        winSound.currentTime = 0;
+        loseSound.currentTime = 0;
+        drawSound.currentTime = 0; // Reset draw sound to the beginning
+        oWinSound.currentTime = 0; // Reset O win sound to the beginning
+        buttonClickSound.currentTime = 0; // Reset button click sound to the beginning
+
+        if (mode === "") {
+            document.querySelector(".selection").innerText = "⚠️ Please select a mode first!";
+            return;
+        }
+
+        board = Array(9).fill("");
+        currentPlayer = "X";
+        gameActive = true;
+        timeLeft = 5; // Set timer to 5 seconds for each turn
+        clearInterval(timer);
+        document.getElementById("timer").innerText = `TIMER: ${timeLeft}s`;
+        createBoard();
+
+        if (timerEnabled) startTimer();
+
+        document.querySelector(".selection").innerText = mode === "pvp" ? "Mode: Player vs Player" : "Mode: Play vs Bot";
+    }
+
+    function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById("timer").innerText = `TIMER: ${timeLeft}s`;
+            } else {
+                clearInterval(timer);
+                gameActive = false;
+                document.querySelector(".selection").innerText = "⏳ Time's up! Game over.";
+                loseSound.play(); // Play lose sound
+                setTimeout(startResetGame, 2000); // Reset game after a short delay
+            }
+        }, 1000);
+    }
+
+    function createBoard() {
+        const boardElement = document.getElementById("board");
+        boardElement.innerHTML = "";
+        board.forEach((_, index) => {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.dataset.index = index;
+            cell.onclick = () => makeMove(index);
+            boardElement.appendChild(cell);
+        });
+    }
+
+    function makeMove(index) {
+        if (!gameActive || board[index] || mode === "") {
+            document.querySelector(".selection").innerText = "⚠️ Select a mode & start the game!";
+            return;
+        }
+
+        board[index] = currentPlayer;
+        document.querySelectorAll(".cell")[index].innerText = currentPlayer;
+        clickSound.play(); // Play click sound
+
+        if (checkWinner()) return;
+
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+        // Reset the timer for the next player's turn
+        timeLeft = 5; // Reset timer to 5 seconds
+        document.getElementById("timer").innerText = `TIMER: ${timeLeft}s`;
+        if (timerEnabled) startTimer(); // Restart timer for the next turn
+
+        if (mode === "bot" && currentPlayer === "O") {
+            setTimeout(botMove, 500);
+        }
+    }
+
+    function botMove() {
+        if (!gameActive) return;
+
+        let emptyCells = board.map((val, idx) => (val === "" ? idx : null)).filter(val => val !== null);
+        if (emptyCells.length === 0) return;
+
+        let randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        board[randomIndex] = "O";
+        document.querySelectorAll(".cell")[randomIndex].innerText = "O";
+
+        clickSound.play(); // Play click sound
+
+        if (checkWinner()) return;
+
+        currentPlayer = "X";
+    }
+
+    function checkWinner() {
+        const winningCombinations = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        for (let combo of winningCombinations) {
+            let [a, b, c] = combo;
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                gameActive = false;
+                clearInterval(timer);
+
+                if (board[a] === "X") {
+                    document.querySelector(".selection").innerText = `🏆 ${board[a]} Wins!`;
+                    winSound.play(); // Play win sound for X
+                } else if (board[a] === "O") {
+                    document.querySelector(".selection").innerText = `🏆 ${board[a]} Wins!`;
+                    oWinSound.play(); // Play O win sound
+                }
+
+                // Add animation to winning cells
+                document.querySelectorAll(".cell")[a].classList.add("win");
+                document.querySelectorAll(".cell")[b].classList.add("win");
+                document.querySelectorAll(".cell")[c].classList.add("win");
+
+                setTimeout(startResetGame, 2000); // Reset game after a short delay
+                return true;
+            }
+        }
+
+        if (!board.includes("")) {
+            gameActive = false;
+            clearInterval(timer);
+            document.querySelector(".selection").innerText = "😐 It's a Draw!";
+            
+            // Play draw sound
+            drawSound.play();
+
+            // Add draw animation to all cells
+            document.querySelectorAll(".cell").forEach(cell => cell.classList.add("draw"));
+
+            setTimeout(startResetGame, 2000); // Reset game after a short delay
+            return true;
+        }
+
+        return false;
+    }
+</script>
+
+</body>
+</html>

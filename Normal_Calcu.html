@@ -1,0 +1,385 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normal_Calcu</title>
+    <style>
+
+        body {
+          font-family: 'Times New Roman', Times, serif;
+          background: url('images/bg.jpg') no-repeat center fixed;
+          background-size: cover;
+          height: 200vh;
+            }
+        
+         .container {
+           position: fixed;
+           top: 10px;
+           left: 418px;
+           display: flex;
+           justify-content: center;
+            align-items: center;
+            width: 28.5%;
+            height: 570px;
+            border-bottom-left-radius: 3.5cm;
+            border-bottom-right-radius: 3.5cm;
+            border-top-left-radius: 30px;
+             border-top-right-radius: 35px;
+            border: 4px solid #5b5b5b;
+            background: linear-gradient(to bottom, #c1c1c1, #a0a0a0);
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.4), 
+             inset 5px 5px 10px rgba(255, 255, 255, 0.3), 
+            15px 10px 20px #00000090;
+           }
+         .container3 {
+            width: 135px;
+            height: 45px;
+            position: fixed;
+            top: 35px;
+            left: 51%;
+            border-radius: 8px;
+            background-color: #6e3629;
+            box-shadow: 1px 1px 20px black inset;
+            border-top: 3px solid black;
+            border-left : 3px solid black;
+         }
+
+        .container  p[type="p1"] {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 10px;
+            left: 41%;
+             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+            -2px -2px 3px rgba(255, 255, 255, 0.3);
+            font-size: 18px;
+        }
+        .container  p[type="p2"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 60px;
+            left: 39.5%;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+            -2px -2px 3px rgba(255, 255, 255, 0.3);
+            font-size: 15px;
+        }
+        .container  p[type="p3"] {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 80px;
+            left: 40%;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+            -2px -2px 3px rgba(255, 255, 255, 0.3);
+            font-size: 10.5px;
+            color: #1a8f51;
+        }
+
+        .container  p[type="p4"] {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 82px;
+            left: 54%;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+            -2px -2px 3px rgba(255, 255, 255, 0.3);
+            font-size: 9px;
+            color: black;
+        }
+
+        .result [type="text"] {
+            top: 110px;
+            left: 440px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 265px;
+            height: 80px;
+            border-radius: 15px;
+            background-color: #abc3ad;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+            -2px -2px 3px rgba(255, 255, 255, 0.3);
+            box-shadow: 10px 6px 5px #00000050 inset;
+            border-top:  10px #bcbcbc outset ; 
+            border-left:  12px #a4a4a4 outset ; 
+            border-right:  12px white outset ; 
+            border-bottom:  20px rgb(215, 215, 215) inset ; 
+            text-align: right;
+            font-size: 45px;
+            font-family: Courier New;
+        }
+
+        .button [type="n1"] {
+        font-size: 30px;
+         text-align: center;
+         border-radius: 8px;
+         width: 80px;
+         height: 60px;
+         background-color: #6c6c6c;
+         box-shadow: -0px px #0000008a;
+         color: #dedede;
+         cursor: pointer;
+         transition: transform 0.2s ease-in-out;
+         border: none;
+         margin: 5px;
+         margin-top: 10px;
+      }
+
+      .container  button[type="text1"] {
+        margin-top: 300px;
+        margin-left: 8px;
+        width: 50px;
+        height: 20px;
+        font-size: 8px;
+        border-end-end-radius: 4cm;
+        border-start-start-radius: 4cm;
+        background-color: #403d61;
+        color: white;
+        box-shadow:  4px 4px 7px #0000007a;
+
+      }
+      .container  button[type="text2"] {
+        margin-left: 15px;
+        font-size: 10px;
+        padding: 10px;
+        height: 60px;
+        border-radius: 15cm;
+        background-color: #403d61;
+        color: white;
+        box-shadow:  1px 5px 7px #0000007a;
+      }
+
+      .containerl button[type="text3"] {
+        width: 50px;
+        height: 20px;
+        font-size: 8px;
+        border-end-start-radius: 4cm;
+        border-start-end-radius: 4cm;
+        background-color: #403d61;
+        color: white;
+        box-shadow:  4px 4px 7px #0000007a;
+      }
+
+      .containerl button[type="text4"] {
+        margin-left: 6.5px;
+        width: 50px;
+        height: 20px;
+        font-size: 8px;
+        border-bottom-right-radius: 7cm;
+        border-bottom-left-radius: 7cm;
+        border-top-right-radius: 3cm;
+        border-top-left-radius: 3cm;
+        background-color: #313131;
+        color: white;
+        box-shadow:  4px 4px 7px #0000007a;
+      }
+
+      .containerl button[type="text5"] {
+        margin-left: 2px;
+        width: 45px;
+        height: 20px;
+        font-size: 8px;
+        border-bottom-right-radius: 7cm;
+        border-bottom-left-radius: 7cm;
+        border-top-right-radius: 3cm;
+        border-top-left-radius: 3cm;
+        background-color: #313131;
+        color: white;
+        box-shadow:  4px 4px 7px #0000007a;
+      }
+       .containerl button[type="text6"] {
+           margin-left: 2px;
+    width: 55px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #f9f9f9, #dcdcdc);
+    color: #000;
+    border-bottom-right-radius: 7cm;
+    border-bottom-left-radius: 7cm;
+    border-top-right-radius: 3cm;
+    border-top-left-radius: 3cm;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5),
+    -2px -2px 3px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 2px 2px 4px #ffffff, 4px 4px 7px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+      }
+     
+           @media (max-width: 768px) {
+           .container {
+            top: 150px;
+            left: 110px;
+            width: 60%;
+            height:700px;
+           }
+     
+         .container3 {
+            width: 135px;
+            height: 45px;
+            top: 180px;
+            left: 50%;
+         }
+                
+        .result [type="text"] {
+            top: 260px;
+            left: 133px;
+            width: 265px;
+            height: 80px;
+        }
+          .container  p[type="p1"] {
+            top: 150px;
+            left: 31%;
+            font-size: 18px;
+          }
+                
+           .container  p[type="p2"] {
+            top: 210px;
+            left: 28%;
+            font-size: 15px;
+          }
+           .container  p[type="p3"] {
+            top: 232px;
+            left: 29%;
+        }
+                
+           .container  p[type="p4"] {
+            top: 225px;
+            left: 55%;
+            font-size:12px;
+        }
+           .containerl button[type="text1"] {
+        margin-top: 200px;
+      }
+                
+    </style>
+</head>
+<body>
+     
+
+        <div class="container">
+            <p type="p1"><b>CASIO</b></p>
+            <p type="p2"><b>Fx1991ES PLUS</b></p>
+            <p type="p3"><strong><i><b>NATURAL V.PAM</b></i></strong></p>
+            <p type="p4"><b>Mii WAY POWER</b></p>
+
+            <div class="containerl">
+                <button type="text3" onclick="getValue('SHIFT')">SHIFT</button>
+                <button type="text3" onclick="clearResult('C')">ALPHA</button>
+
+                <button type="text2" onclick="getValue('REPLAY')" style="margin-top: 100px;">REPLAY</button>
+
+            <button type="text1" onclick="getValue('SHIFT')">APLHA</button>
+            <button type="text1" onclick="getValue('C')">ON</button><br>    
+
+            <button type="text4" onclick="getValue('SHIFT')">CALC</button>
+            <button type="text4" onclick="getValue('C')">2</button>
+            <button type="text4" onclick="()" style="visibility: hidden;"></button>
+            <button type="text4" onclick="getValue('SHIFT')">x-1</button>
+            <button type="text4" onclick="getValue('SHIFT')">log</button><br><br>
+
+            <button type="text5" onclick="getValue('SHIFT')">SHIFT</button>
+            <button type="text5" onclick="getValue('SHIFT')">SHIFT</button>
+            <button type="text5" onclick="getValue('SHIFT')">SHIFT</button>
+            <button type="text5" onclick="getValue('SHIFT')">SHIFT</button>
+            <button type="text5" onclick="getValue('SHIFT')">log</button>
+            <button type="text5" onclick="getValue('SHIFT')">In</button><br><br>
+            
+            <button type="text5" onclick="getValue('SHIFT')">(-)</button>
+            <button type="text5" onclick="getValue('SHIFT')">'''</button>
+            <button type="text5" onclick="getValue('SHIFT')">hyp</button>
+            <button type="text5" onclick="getValue('SHIFT')">sin</button>
+            <button type="text5" onclick="getValue('SHIFT')">cos</button>
+            <button type="text5" onclick="getValue('SHIFT')">tan</button><br><br>
+
+            <button type="text5" onclick="getValue('SHIFT')">RCL</button>
+            <button type="text5" onclick="getValue('SHIFT')">ENG</button>
+            <button type="text5" onclick="getValue('SHIFT')">(</button>
+            <button type="text5" onclick="getValue('SHIFT')">)</button>
+            <button type="text5" onclick="getValue('SHIFT')">S<>D</button>
+            <button type="text5" onclick="getValue('SHIFT')">M+</button><br><br>
+                 
+            <button type="text6" onclick="getValue('7')">7</button>
+            <button type="text6" onclick="getValue('8')">8</button>
+            <button type="text6" onclick="getValue('9')">9</button>
+            <button type="text6" onclick="getValue('Del')">Del</button>
+            <button type="text6" onclick="getValue('Clear')">AC</button><br><br>
+                 
+            <button type="text6" onclick="getValue('4')">4</button>
+            <button type="text6" onclick="getValue('5')">5</button>
+            <button type="text6" onclick="getValue('6')">6</button>
+            <button type="text6" onclick="getValue('×')">×</button>
+            <button type="text6" onclick="getValue('/')">÷</button><br><br>
+
+           <button type="text6" onclick="getValue('1')">1</button>
+            <button type="text6" onclick="getValue('2')">2</button>
+            <button type="text6" onclick="getValue('3')">3</button>
+            <button type="text6" onclick="getValue('+')">+</button>
+            <button type="text6" onclick="getValue('-')">-</button><br><br>
+                 
+            <button type="text6" onclick="getValue('0')">0</button>
+            <button type="text6" onclick="getValue('.')">.</button>
+            <button type="text6" onclick="getValue('X10^')">X10×</button>
+            <button type="text6" onclick="getValue('Ans')">Ans</button>
+            <button type="text6" onclick="getValue('calculateResult')">=</button><br><br>
+                
+            <div class="container3">
+
+            <div class="result">
+                <input type="text" id="display" disabled><br><br>
+             </div>
+            
+             <div class="button"></div>
+
+                <div class="b1"></div>
+                 
+
+ 
+<script>
+    function getValue(value) {
+        let display = document.getElementById('display');
+
+        if (value === 'Del') {
+            eraseLastCharacter();
+        } else if (value === 'Clear') {
+            clearResult();
+        } else if (value === 'calculateResult') {
+            calculateResult();
+        } else {
+            display.value += value;
+        }
+    }
+
+    function clearResult() {
+        document.getElementById('display').value = '';
+    }
+
+    function eraseLastCharacter() {
+        let display = document.getElementById('display');
+        display.value = display.value.slice(0, -1);
+    }
+
+    function calculateResult() {
+        try {
+            let expression = document.getElementById('display').value;
+            expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
+            document.getElementById('display').value = eval(expression);
+        } catch {
+            document.getElementById('display').value = "Error";
+        }
+    }
+</script>
+   
+</body>
+</html>

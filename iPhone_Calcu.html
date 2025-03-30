@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Calculator ni mi</title>
+   <style>
+      body {
+         font-family: 'Times New Roman', Times, serif;
+         background: url('images/bg.jpg') no-repeat center fixed;
+         background-size: cover;
+         align-items: center;
+         text-align: center;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         height: 100vh;
+         margin: 0;
+      }
+      
+      .mi {
+         font-size: 50px;
+         font-weight: bold;
+         color: white;
+         margin-bottom: 10px;
+      }
+
+      .container {
+         background-color: black;
+         width: 290px;
+         height: 550px;
+         border-radius: 45px;
+         border: 6px double #959595;
+         box-shadow: 15px 10px 20px #00000090,
+         inset 0 0 20px rgba(255, 255, 255, 0.2);
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding-top: 20px;
+      }
+
+      .notch {
+         width: 110px;
+         height: 25px;
+         border-bottom: 2px solid grey;
+         background-color: #060606;
+         border-bottom-left-radius: 10px;
+         border-bottom-right-radius: 10px;
+         border-top-left-radius: 10px;
+         border-top-right-radius: 10px;
+      }
+
+      .line {
+         width: 110px;
+         height: 18px;
+         margin-top:20px;
+         border-bottom: 3px solid white;
+      }
+
+      .Result [type="text"] {
+         font-size: 45px;
+         text-align: right;
+         margin-top: 25%;
+         background-color: rgb(0, 0, 0);
+         color: white;
+         padding: 5px;
+         width: 250px;
+         border: none;
+      }
+
+      .b2 [type="n1"] {
+         font-size: 30px;
+         text-align: center;
+         border-radius: 1cm;
+         height: 60px;
+         margin: 3px;
+         background-color: #b6b6b6;
+         border: none;
+         cursor: pointer;
+         transition: transform 0.2s ease-in-out;
+         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3), 
+         inset 0px -2px 3px rgba(255, 255, 255, 0.2);
+      }
+
+      .b2 button:active {
+         transform: scale(0.90);
+         
+      }
+   </style>
+</head>
+<body>
+   
+   <div class="mi">MiPhone</div>
+
+   <div class="container">
+      <div class="notch"></div>
+
+      <div class="Result">
+         <input type="text" id="display" disabled><br><br>
+      </div>
+
+      <div class="b2">
+         <button type="n1" onclick="clearResult()" style="width: 60px;">C</button>
+         <button type="n1" onclick="getValue('/')" style="width: 60px;">/</button>
+         <button type="n1" onclick="getValue('%')" style="width: 60px;">%</button>
+         <button type="n1" onclick="getValue('÷')" style="width: 60px; background-color: orange; color: white;">÷</button>
+
+         <button type="n1" onclick="getValue('7')" style="width: 60px; background-color: #4f4f4f; color: white">7</button>
+         <button type="n1" onclick="getValue('8')" style="width: 60px; background-color: #4f4f4f; color: white">8</button>
+         <button type="n1" onclick="getValue('9')" style="width: 60px; background-color: #4f4f4f; color: white">9</button>
+         <button type="n1" onclick="getValue('x')" style="width: 60px; background-color: orange; color: white;">x</button>
+
+         <button type="n1" onclick="getValue('4')" style="width: 60px; background-color: #4f4f4f; color: white">4</button>
+         <button type="n1" onclick="getValue('5')" style="width: 60px; background-color: #4f4f4f; color: white">5</button>
+         <button type="n1" onclick="getValue('6')" style="width: 60px; background-color: #4f4f4f; color: white">6</button>
+         <button type="n1" onclick="getValue('-')" style="width: 60px; background-color: orange; color: white;">-</button>
+
+         <button type="n1" onclick="getValue('1')" style="width: 60px; background-color: #4f4f4f; color: white;">1</button>
+         <button type="n1" onclick="getValue('2')" style="width: 60px; background-color: #4f4f4f; color: white;">2</button>
+         <button type="n1" onclick="getValue('3')" style="width: 60px; background-color: #4f4f4f; color: white;">3</button>
+         <button type="n1" onclick="getValue('+')" style="width: 60px; background-color: orange; color: white;">+</button>
+
+         <button type="n1" onclick="getValue('.')" style="width: 60px; background-color: #4f4f4f; color: white">.</button>
+         <button type="n1" onclick="getValue('0')" style="width: 60px; background-color: #4f4f4f; color: white">0</button>
+         <button type="n1" onclick="eraseLastCharacter()" style="width: 60px; background-color: #4f4f4f; color: white">E</button>
+         <button type="n1" onclick="calcResult()" style="width: 60px; background-color: orange; color: white;">=</button>
+      </div>
+
+      <div class="line"></div></div>
+      
+   <footer style="margin-top: 20px; color: white; font-size: 14px;">
+      &copy; This is Imitated IPhone theme Created by Medina. Just for Ui experiment purposes.
+   </footer>
+      
+      
+      <script>
+function getValue(value) {
+    document.getElementById('display').value += value;
+}
+
+function clearResult() {
+    document.getElementById('display').value = '';
+}
+
+function eraseLastCharacter() {
+    var display = document.getElementById('display');
+    display.value = display.value.slice(0, -1);
+}
+
+function calcResult() {
+    var display = document.getElementById('display');
+    var expression = display.value;
+
+    expression = expression.replace(/x/g, '*').replace(/÷/g, '/');
+
+    try {
+        display.value = eval(expression);
+    } catch (e) {
+        display.value = 'Error';
+    }
+}
+</script>
+</body>
+</html>
