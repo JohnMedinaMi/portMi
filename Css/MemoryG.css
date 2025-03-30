@@ -1,0 +1,165 @@
+      @font-face {
+        font-family: "GameZ";
+        src: url("../webfonts/NIXED.ttf");
+      }
+      @font-face {
+        font-family: "Raya";
+        src: url("../font/Raya.ttf");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+  
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Tic1";
+    background: 
+        radial-gradient(circle, rgba(0, 100, 0, 0.6) 30%, rgba(0, 40, 0, 0.9) 100%), /* Light to dark blend */
+        url('../images/Cas.png') center center; /* Background image */
+    background-size: cover;
+    background-blend-mode: overlay; /* Smooth blending effect */
+}
+  
+      .leaderboard-container {
+        margin-left:30px;
+        margin-top: 10px;
+        width: 90%;
+        max-width: 900px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .leaderboard {
+        font-family: "GameZ";
+        transform: perspective(1000px) rotateX(30deg);
+        border: 5px solid #661321;
+        outline: thick ridge #e46f83;
+        width: 90%;
+        padding: 25px;
+        background: url("../images/GameZone/table1.jpg") no-repeat center;
+        background-size: cover;
+        border-bottom-left-radius: 3cm;
+        border-bottom-right-radius: 3cm;
+        border-top-left-radius: 1cm;
+        border-top-right-radius: 1cm;
+        text-align: center;
+        margin-top: 15px;
+        color: white;
+        font-size: 1.3rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.5),
+          0px 0px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      /* Start and Try Again Buttons */
+      .start-button,
+      .try-again-button {
+        margin-top: 10px;
+        width: 70px;
+        height: 30px;
+        font-size: 1.2rem;
+             transform: perspective(1000px) rotateX(30deg);
+            box-shadow: 0px 5px 1px rgba(0, 0, 0, 0.5);
+        color: white;
+        background: linear-gradient(45deg, #dede35, #debc35);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+      .start-button:hover,
+      .try-again-button:hover {
+        transform: scale(1.05);
+      }
+      .try-again-button {
+        display: none; /* Hide it by default */
+        background: linear-gradient(45deg, #35dedb, #35aede);
+      }
+      .game-container {
+        border-bottom: 10px solid black;
+        margin-left: 55px;
+        outline: 3px ridge #40362f;
+        margin-top: 140px;
+        width: 80%;
+        max-width: 1000px;
+        padding: 20px;
+        background: url("../images/GameZone/wood.jpg") no-repeat center;
+        background-size: cover;
+        border-radius: 1cm;
+        box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.5),
+          0px 0px 20px rgba(0, 0, 0, 0.3);
+        transform: perspective(1000px) rotateX(30deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 40px;
+      }
+      .table {
+        outline: thick ridge #7d7d7d;
+        width: 100%;
+        background: url("../images/GameZone/BG_Table.jpeg") no-repeat center;
+        border: 2px solid #dfdfdf;
+        background-size: cover;
+        border-radius: 1cm;
+        padding: 15px;
+        box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.5),
+          0px 0px 50px rgba(109, 78, 64, 0.7);
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .game-board {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+        max-width: 900px;
+        width: 105%;
+      }
+      .card {
+        width: 65px;
+        height: 100px;
+        perspective: 1000px;
+        cursor: pointer;
+        transition: transform 0.5s ease-out;
+      }
+      .card-content {
+        box-shadow: 7px 5px 20px #000000a9;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease-out;
+      }
+      .card.flipped .card-content {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        box-shadow: 0px 0px 20px #6b6b6ba4 inset;
+        border-radius: 8px;
+      }
+      .card-front {
+        background-size: cover;
+      }
+      .card-back {
+        transform: rotateY(180deg);
+        background-size: cover;
+      }
+
+      .Z {
+        margin-top: 10pc;
+        color: #1a003d;
+      }

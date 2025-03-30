@@ -1,0 +1,228 @@
+    @font-face {
+            font-family: "Tic";
+            src: url("../webfonts/Moogalator.ttf");
+        }
+        
+        @font-face {
+            font-family: "Tic1";
+            src: url("../webfonts/NIXED.ttf");
+        }
+        @font-face {
+            font-family: "Tic2";
+            src: url("../webfonts/Moogalator1.ttf");
+        }
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Tic1";
+    background: url('../images/casino.jpg') center center;
+    background-size: cover;
+}
+
+     .slot-machine {
+    outline: 25px ridge silver;
+    background: linear-gradient(to bottom, #d40000, #7a0000);
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    position: relative;
+    border-bottom: 6px solid black;
+    border-top-right-radius: 1.5cm;
+    border-top-left-radius: 1.5cm;
+    box-shadow: 0 50px 60px 20px rgba(0, 0, 0, 0.900), 0 6px 10px rgba(255, 255, 255, 0.2), inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+        .jackpot {
+                font-family: "Tic";
+            background: linear-gradient(to bottom, #ff0000, #aa0000);
+            color: yellow;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 14px;
+            margin-bottom: 4px;
+            margin-top: 20px;
+            outline: 5px ridge silver;
+            border-radius: 10px;
+            text-shadow: 3px 3px 10px black;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .screen {
+            outline: 5px ridge silver;
+            background: #222;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .board {
+                border-bottom: 10px solid black;
+                border-left: 10px solid black;
+                border-right: 10px solid grey;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 6px;
+            background: linear-gradient(to bottom, #0044ff, #002266);
+            padding: 20px;
+            outline: 5px ridge silver;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 310px;
+            margin: auto;
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .cell {
+                
+                font-family: "Tic2";
+            width: 95px;
+    height: 85px;
+    background: linear-gradient(145deg, #e0e0e0, #b0b0b0); /* Subtle gradient for realistic lighting */
+    border: 2px solid #999; /* Light border */
+    color: #333; /* Text color for contrast */
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 75px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover and click effects */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), inset 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .cell:hover {
+            background: lightgray;
+        }
+
+        .cell:active {
+            transform: scale(0.9);
+        }
+
+        .timer-container {
+             background: #111;
+    
+    margin-top: 10px;
+    border: 6px solid #2c3e50;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.2); /* Depth shadow for realism */
+    transition: all 0.3s ease; /* Smooth transition for hover and active states */
+        }
+
+        .timer {
+color: #ecf0f1; /* Light color for text */
+    font-size: 1.2rem;
+            height: 30px;
+            width: 100px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Shadow for text to make it pop */
+    
+    border-radius: 8px;
+    background: linear-gradient(145deg, #34495e, #2c3e50); /* Dark blue to gray gradient */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
+    transition: all 0.3s ease-in-out;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            background: black;
+            padding: 14px;
+            outline: 5px ridge silver;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+.button {
+          font-family: "Tic1";
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;  /* Rounded corners for a polished look */
+    border: none;
+    margin: 0 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    outline: 5px ridge silver;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.4); /* Outer and inner shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for all properties */
+    position: relative;
+    background: linear-gradient(145deg, #3498db, #2980b9); /* Default blue gradient */
+}
+
+.button:active {
+    transform: scale(0.95); /* Slight shrink effect when pressed */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6); /* Darker shadow when pressed */
+    top: 2px; /* Move the button down to simulate pressing */
+}
+
+.button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+.button:hover {
+    background: linear-gradient(145deg, #2980b9, #3498db); /* Lighter blue gradient on hover */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+.orange {
+    background: linear-gradient(145deg, #ff9800, #e68900); /* Orange gradient */
+}
+
+.green {
+    background: linear-gradient(145deg, #4caf50, #388e3c); /* Green gradient */
+}
+
+.purple {
+    background: linear-gradient(145deg, #9c27b0, #7b1fa2); /* Purple gradient */
+}
+
+.yellow {
+    background: linear-gradient(145deg, #fbc02d, #f57f17); /* Yellow gradient */
+}
+        .selection {
+            background: linear-gradient(145deg, #f39c12, #e67e22);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px;
+                  font-family: "Tic1";
+            margin-top: 30px;
+            width: 60%;
+            outline: 5px ridge silver;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px rgba(255, 255, 255, 0.3);
+        }
+
+       @keyframes winAnimation {
+        0% { background: green; color: white; }
+        50% { background: limegreen; color: black; }
+        100% { background: green; color: white; }
+    }
+
+    @keyframes drawAnimation {
+        0% { background: orange; color: white; }
+        50% { background: gold; color: black; }
+        100% { background: orange; color: white; }
+    }
+
+    .win {
+        animation: winAnimation 0.5s ease-in-out alternate infinite;
+    }
+
+    .draw {
+        animation: drawAnimation 0.5s ease-in-out alternate infinite;
+    }
+        
+  

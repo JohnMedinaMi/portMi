@@ -1,0 +1,206 @@
+       @font-face {
+            font-family: "Dr";
+            src: url("../webfonts/Magnetar.otf");
+        }
+    
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/darkwood.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #000;
+}
+        .power-button {
+     margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2d2c2c;
+    border: none;
+    outline: none;
+        box-shadow: 0px 0px 15px 5px, -3px -3px 5px #ffffff;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.power-button::before {
+    content: "ტ"; /* Unicode Power Icon */
+    font-size: 29px;
+    color: #aaa;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial, sans-serif;
+}
+
+.power-button:active {
+    box-shadow: inset 0px 0px 30px 10px, inset -5px -5px 10px #ffffff;
+}
+
+        .container {
+            font-family: "Dr";
+            height: 460px;
+            border-bottom: 5px solid black;
+            border-right: 10px solid black;
+            width: 35%;
+            box-shadow: 50px -50px 700px  inset, -15px 15px 50px 10px black;
+            border-radius: 10px;
+            margin-top: 50px;
+            margin-left: 390px;
+            background-color: #2d2c2c;
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        h2 {
+            margin-right: 40px;
+            text-align: right;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .drum-kit {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .key,
+        .key1,
+        .key2,
+        .key3,
+        .key4,
+        .key5,
+        .key6,
+        .key7,
+        .key8,
+        .key9,
+        .key10,
+        .key11,
+        .key12,
+        .key13,
+        .key14,
+        .key15 {
+            box-shadow: 0px 0px 30px 20px inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+            width: 80px;
+            height: 70px;
+            background: #ccc;
+            color: black;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .key {
+            box-shadow: 0px 0px 30px 20px #ff8480 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        /* Additional Key Styles */
+        .key1 {
+            box-shadow: 0px 0px 30px 20px #ffd480 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key2 {
+            box-shadow: 0px 0px 30px 20px #ffff80 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key3 {
+            box-shadow: 0px 0px 30px 20px #ff80aa inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key4 {
+            box-shadow: 0px 0px 30px 20px #e085c2 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key5 {
+            box-shadow: 0px 0px 30px 20px #99ffbb inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key6 {
+            box-shadow: 0px 0px 30px 20px #aaff80 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key7 {
+            box-shadow: 0px 0px 30px 20px #ffffb3 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key8 {
+            box-shadow: 0px 0px 30px 20px #99ddff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key9 {
+            box-shadow: 0px 0px 30px 20px #99ffff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key10 {
+            box-shadow: 0px 0px 30px 20px #4da6ff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key11 {
+            box-shadow: 0px 0px 30px 10px #b366ff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key12 {
+            box-shadow: 0px 0px 30px 20px #ff80ff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key13 {
+            box-shadow: 0px 0px 30px 15px #33ff99 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key14 {
+            box-shadow: 0px 0px 30px 20px #ff9999 inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+
+        .key15 {
+            box-shadow: 0px 0px 30px 20px #9999ff inset, -5px 5px 10px rgba(0, 0, 0, 0.900);
+        }
+    .key:active,
+        .key.playing,
+        .key1.playing,
+        .key1:active,
+        .key2.playing,
+        .key2:active,
+        .key3.playing,
+        .key3:active,
+        .key4.playing,
+        .key4:active,
+        .key5.playing,
+        .key5:active,
+        .key6.playing,
+        .key6:active,
+        .key7.playing,
+        .key7:active,
+        .key8.playing,
+        .key8:active,
+        .key9.playing,
+        .key9:active,
+        .key10.playing,
+        .key10:active,
+        .key11.playing,
+        .key11:active,
+        .key12.playing,
+        .key12:active,
+        .key13.playing,
+        .key13:active,
+        .key14.playing,
+        .key14:active,
+        .key15.playing,
+        .key15:active {
+            transform: scale(1.1);
+            background: #ccc;
+            color: #222;
+        }
+
+        /* Mobile-Friendly Styles */
